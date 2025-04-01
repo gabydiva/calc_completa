@@ -1,0 +1,151 @@
+import React, { useState } from 'react';
+import { View, TextInput, Text, Button, StyleSheet } from 'react-native';
+
+const App = () => {
+    const [num1, setNum1] = useState('');
+    const [num2, setNum2] = useState('');
+    const [resultado, setResultado] = useState('');
+
+    const somar = () => {
+        const n1 = parseFloat(num1);
+        const n2 = parseFloat(num2);
+        if (isNaN(n1) || isNaN(n2)) {
+        setResultado("Insira números válidos.");
+        return;
+      }
+        setResultado(n1 + n2);
+    };
+
+     const subtrair = () => {
+        const n1 = parseFloat(num1);
+        const n2 = parseFloat(num2);
+        if (isNaN(n1) || isNaN(n2)) {
+            setResultado("Por favor, insira números válidos.");
+            return;
+        }
+        setResultado(n1 - n2);
+    };
+
+    const multiplicar = () => {
+        const n1 = parseFloat(num1);
+        const n2 = parseFloat(num2);
+        if (isNaN(n1) || isNaN(n2)) {
+            setResultado("Por favor, insira números válidos.");
+            return;
+        }
+        setResultado(n1 * n2);
+    };
+
+    const dividir = () => {
+        const n1 = parseFloat(num1);
+        const n2 = parseFloat(num2);
+        if (isNaN(n1) || isNaN(n2)) {
+            setResultado("Por favor, insira números válidos.");
+            return;
+        }
+        if (n2 === 0) {
+            setResultado("Não é possível dividir por zero.");
+            return;
+        }
+        setResultado(n1 / n2);
+    };
+
+    return (
+        <View style={styles.container}>
+            <Text style={styles.title1}>Calculadora Completa</Text>
+
+            <TextInput
+                style={styles.input}
+                placeholder="Digite o 1° número:"
+                keyboardType="numeric"
+                value={num1}
+                onChangeText={setNum1}
+            />
+
+            <TextInput
+                style={styles.input}
+                placeholder="Digite o 2° número:"
+                keyboardType="numeric"
+                value={num2}
+                onChangeText={setNum2}
+            />
+
+            
+            <View style={styles.buttonsContainer}>
+                <View style={styles.buttonWrapper}>
+                    <Button title=" + " onPress={somar} color="#655578" />
+                </View>
+                <View style={styles.buttonWrapper}>
+                    <Button title=" − " onPress={subtrair} color="#655578" />
+                </View>
+                <View style={styles.buttonWrapper}>
+                    <Button title=" × " onPress={multiplicar} color="#655578" />
+                </View>
+                <View style={styles.buttonWrapper}>
+                    <Button title=" ÷ " onPress={dividir} color="#655578" />
+                </View>
+            </View>
+            <TextInput
+                style={styles.resultInput}
+                placeholder="Resultado"
+                keyboardType="numeric"
+                value={resultado}
+                editable={false}
+            />
+      <Text style={styles.title2}>Feito por: Gabriely Jó da Silva. ♡</Text>
+        </View>
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#ffdef5',
+        padding: 20,
+    },
+    title1: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#655578',
+        marginBottom: 20,
+    },
+    title2: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#655578',
+    },
+    input: {
+        width: '100%',
+        height: 40,
+        borderColor: '#655578',
+        borderWidth: 1,
+        marginBottom: 15,
+        paddingLeft: 10,
+        borderRadius: 5,
+        backgroundColor: '#fff',
+    },
+    resultInput: {
+        width: '100%',
+        height: 40,
+        borderColor: '#655578',
+        borderWidth: 1,
+        marginBottom: 15,
+        paddingLeft: 10,
+        borderRadius: 5,
+        backgroundColor: '#fac3e9',
+    },
+
+    buttonsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+        marginBottom: 20,
+    },
+    buttonWrapper: {
+        width: '19%',
+    },
+});
+
+export default App;
